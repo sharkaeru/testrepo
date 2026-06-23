@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TestApp.Api/TestApp.Api.csproj" Id="378107bb-1d45-4f50-846e-fa72ec9517af" />
+  <Project Path="TestApp.Business/TestApp.Business.csproj" Id="f476f7cd-9f5c-41cb-8a5a-1714e260d12d" />
+  <Project Path="TestApp.DataAccess/TestApp.DataAccess.csproj" Id="d67c76e0-0735-4ccd-bfb3-e5cfca4efdfb" />
+</Solution>
