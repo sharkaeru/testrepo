@@ -1,10 +1,11 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { CustomerService } from '../../services/customer.service';
-import { CustomerForm } from '../../services/customer-form';
+import { CustomerFormService } from '../../services/customer-form';
 import { Auth } from '../../services/auth';
+
+import { CustomerFormGroup } from '../../models/customer-form-group';
 
 import { CustomerForm as CustomerFormComponent } from '../../components/customer-form/customer-form';
 
@@ -23,13 +24,13 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './edit-profile.css',
 })
 export class EditProfile {
-  form: any;
+  form: CustomerFormGroup;
   message = '';
   customerId: number | null = null;
 
   constructor(
     private customerService: CustomerService,
-    private customerFormService: CustomerForm,
+    private customerFormService: CustomerFormService,
     private auth: Auth,
     private router: Router,
     private cdr: ChangeDetectorRef
@@ -48,15 +49,26 @@ export class EditProfile {
   saveChanges() {
     if (!this.customerId) {
       this.message = 'No customer is currently logged in.';
+      this.cdr.detectChanges();
       return;
     }
 
     if (this.form.invalid) {
       this.message = 'Please fill out all required fields correctly.';
+      this.cdr.detectChanges();
       return;
     }
 
-    this.customerService.updateCustomer(this.customerId, this.form.value).subscribe({
+    const formValue = this.form.getRawValue();
+
+    const request = {
+      ...formValue,
+      birthdate: formValue.birthdate
+        ? formValue.birthdate.toISOString().split('T')[0]
+        : null
+    };
+
+    this.customerService.updateCustomer(this.customerId, request).subscribe({
       next: (updatedCustomer) => {
         this.auth.setCurrentCustomer(updatedCustomer);
         this.message = 'Profile updated successfully.';

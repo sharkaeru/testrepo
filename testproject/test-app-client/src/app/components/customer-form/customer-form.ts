@@ -1,6 +1,8 @@
 import { Component, input } from '@angular/core';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
+import { CustomerFormGroup } from '../../models/customer-form-group';
 import { StateSelector } from '../state-selector/state-selector';
+import { ValidationError } from '../validation-error/validation-error';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -15,12 +17,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    StateSelector
+    StateSelector,
+    ValidationError
   ],
   templateUrl: './customer-form.html',
   styleUrl: './customer-form.css'
 })
 export class CustomerForm {
-  form = input.required<FormGroup>();
+  form = input.required<CustomerFormGroup>();
 
 }

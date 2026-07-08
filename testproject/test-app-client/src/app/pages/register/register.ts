@@ -1,8 +1,11 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { CustomerService } from '../../services/customer.service';
-import { CustomerForm } from '../../services/customer-form';
+import { CustomerFormService } from '../../services/customer-form';
+
+import { CustomerFormGroup } from '../../models/customer-form-group';
+import { CustomerValidators } from '../../validators/customer.validators';
 
 import { CustomerForm as CustomerFormComponent } from '../../components/customer-form/customer-form';
 import { PasswordField } from '../../components/password-field/password-field';
@@ -23,14 +26,18 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './register.css',
 })
 export class Register {
-  form: any;
-  passwordControl = new FormControl('', Validators.required);
+  form: CustomerFormGroup;
+
+  passwordControl = new FormControl<string>('', {
+    nonNullable: true,
+    validators: CustomerValidators.password
+  });
 
   message = '';
 
   constructor(
     private customerService: CustomerService,
-    private customerFormService: CustomerForm,
+    private customerFormService: CustomerFormService,
     private cdr: ChangeDetectorRef
   ) {
     this.form = this.customerFormService.createForm();
@@ -43,9 +50,14 @@ export class Register {
       return;
     }
 
+    const formValue = this.form.getRawValue();
+
     const request = {
-      ...this.form.value,
-      password: this.passwordControl.value || ''
+      ...formValue,
+      birthdate: formValue.birthdate
+        ? formValue.birthdate.toISOString().split('T')[0]
+        : null,
+      password: this.passwordControl.value
     };
 
     this.customerService.register(request).subscribe({
