@@ -1,0 +1,81 @@
+@if (customer) {
+
+<mat-card class="profile-card">
+
+    <mat-card-title>
+        My Profile
+    </mat-card-title>
+
+    <mat-card-content>
+
+        <div class="profile-row">
+            <strong>Username</strong>
+            <span>{{ customer.username }}</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Name</strong>
+            <span>{{ customer.firstName }} {{ customer.lastName }}</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Email</strong>
+            <span>{{ customer.email }}</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Birthdate</strong>
+            <span>{{ customer.birthdate | date }}</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Address</strong>
+            <span>{{ customer.address }}</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>City</strong>
+            <span>{{ customer.city }}</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>State</strong>
+            <span>{{ customer.state }}</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Zip</strong>
+            <span>{{ customer.zip }}</span>
+        </div>
+
+        <div class="profile-row">
+            <strong>Member Since</strong>
+            <span>{{ customer.joinDate | date }}</span>
+        </div>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+
+        <button mat-raised-button color="primary">
+            Edit Profile
+        </button>
+
+        <button mat-raised-button color="accent">
+            Change Password
+        </button>
+
+    </mat-card-actions>
+
+</mat-card>
+
+}
+@else {
+
+<mat-card class="profile-card">
+    <mat-card-content>
+        No customer is currently logged in.
+    </mat-card-content>
+</mat-card>
+
+}

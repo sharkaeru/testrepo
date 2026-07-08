@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CustomerService, RegisterCustomerRequest } from '../../services/customer.service';
+import { CustomerService } from '../../services/customer.service';
+import { RegisterCustomerRequest } from '../../models/register-customer-request';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +21,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   templateUrl: './register.html',
   styleUrl: './register.css',

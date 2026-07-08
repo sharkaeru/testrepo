@@ -1,6 +1,9 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CustomerService, LoginCustomerRequest, CustomerResponse } from '../../services/customer.service';
+import { LoginCustomerRequest } from '../../models/login-customer-request';
+import { CustomerResponse } from '../../models/customer-response';
+import { AuthApi } from '../../services/auth-api';
+import { Auth } from '../../services/auth';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,14 +31,15 @@ export class Login {
   message = '';
 
   constructor(
-  private customerService: CustomerService,
+  private authApi: AuthApi,
+  private auth: Auth,
   private cdr: ChangeDetectorRef
 ) {}
 
   loginCustomer() {
-    this.customerService.login(this.loginRequest).subscribe({
+    this.authApi.login(this.loginRequest).subscribe({
       next: (customer: CustomerResponse) => {
-        localStorage.setItem('loggedInCustomer', JSON.stringify(customer));
+        this.auth.setCurrentCustomer(customer);
         this.message = `Welcome, ${customer.firstName}!`;
         this.cdr.detectChanges();
 },

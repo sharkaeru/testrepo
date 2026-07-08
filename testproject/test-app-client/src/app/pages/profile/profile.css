@@ -1,0 +1,22 @@
+.profile-card {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+mat-card-title {
+    margin-bottom: 20px;
+}
+
+.profile-row {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+mat-card-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+}

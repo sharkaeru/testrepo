@@ -3,17 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CustomerResponse } from '../models/customer-response';
-import { RegisterCustomerRequest } from '../models/register-customer-request';
+import { LoginCustomerRequest } from '../models/login-customer-request';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class AuthApi {
   private apiUrl = 'https://localhost:7129/api/customers';
 
   constructor(private http: HttpClient) {}
 
-  register(request: RegisterCustomerRequest): Observable<CustomerResponse> {
-    return this.http.post<CustomerResponse>(`${this.apiUrl}/register`, request);
+  login(request: LoginCustomerRequest): Observable<CustomerResponse> {
+    return this.http.post<CustomerResponse>(`${this.apiUrl}/login`, request);
   }
 }
