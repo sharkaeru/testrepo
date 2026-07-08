@@ -1,0 +1,20 @@
+<mat-form-field appearance="outline" class="state-field">
+  <mat-label>State</mat-label>
+
+  <input
+    matInput
+    [formControl]="stateControl"
+    [matAutocomplete]="stateAuto"
+    (keydown.tab)="selectFirstFilteredState()"
+    (blur)="handleBlur()" />
+
+  <mat-autocomplete #stateAuto="matAutocomplete">
+    @for (state of filteredStates | async; track state.code) {
+      <mat-option
+        [value]="state.name"
+        (onSelectionChange)="selectState(state)">
+        {{ state.name }}
+      </mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

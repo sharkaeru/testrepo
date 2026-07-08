@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CustomerResponse } from '../models/customer-response';
-import { RegisterCustomerRequest } from '../models/register-customer-request';
+import { CustomerFormData } from '../models/customer-form-data';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,11 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  register(request: RegisterCustomerRequest): Observable<CustomerResponse> {
-    return this.http.post<CustomerResponse>(`${this.apiUrl}/register`, request);
+  register(request: CustomerFormData & { password: string }): Observable<CustomerResponse> {
+  return this.http.post<CustomerResponse>(`${this.apiUrl}/register`, request);
+  }
+
+  updateCustomer(id: number, request: CustomerFormData): Observable<CustomerResponse> {
+    return this.http.put<CustomerResponse>(`${this.apiUrl}/${id}`, request);
   }
 }

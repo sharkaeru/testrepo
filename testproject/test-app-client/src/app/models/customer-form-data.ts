@@ -1,6 +1,5 @@
-export interface RegisterCustomerRequest {
+export interface CustomerFormData {
   username: string;
-  password: string;
   firstName: string;
   lastName: string;
   email: string;

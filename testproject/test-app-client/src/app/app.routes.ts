@@ -3,6 +3,7 @@ import { MainLayout } from './layout/main-layout/main-layout';
 import { Register } from './pages/register/register';
 import { Login } from './pages/login/login';
 import { Profile } from './pages/profile/profile';
+import { EditProfile } from './pages/edit-profile/edit-profile';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,10 @@ export const routes: Routes = [
       {
         path: 'profile',
         component: Profile
+      },
+      {
+        path: 'edit-profile',
+        component: EditProfile
       },
       {
         path: '',

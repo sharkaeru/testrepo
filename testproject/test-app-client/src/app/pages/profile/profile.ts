@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CustomerResponse } from '../../models/customer-response';
 import { Auth } from '../../services/auth';
+import { RouterLink } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +12,8 @@ import { DatePipe } from '@angular/common';
   imports: [
     MatCardModule,
     MatButtonModule,
-    DatePipe
+    DatePipe,
+    RouterLink
   ],
   templateUrl: './profile.html',
   styleUrl: './profile.css',

@@ -1,0 +1,26 @@
+<mat-card class="edit-profile-card">
+  <mat-card-title>Edit Profile</mat-card-title>
+
+  <mat-card-content>
+    <app-customer-form [form]="form"></app-customer-form>
+
+    <p class="message">{{ message }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="saveChanges()">
+      Save Changes
+    </button>
+
+    <button
+      mat-button
+      type="button"
+      routerLink="/profile">
+      Cancel
+    </button>
+  </mat-card-actions>
+</mat-card>

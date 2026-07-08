@@ -2,75 +2,17 @@
   <mat-card-title>Register Customer</mat-card-title>
 
   <mat-card-content>
-    <form (ngSubmit)="registerCustomer()" class="register-form">
+    <app-customer-form [form]="form"></app-customer-form>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput name="username" [(ngModel)]="customer.username" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" name="password" [(ngModel)]="customer.password" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>First Name</mat-label>
-        <input matInput name="firstName" [(ngModel)]="customer.firstName" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Last Name</mat-label>
-        <input matInput name="lastName" [(ngModel)]="customer.lastName" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" name="email" [(ngModel)]="customer.email" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Birthdate</mat-label>
-
-        <input matInput [matDatepicker]="birthdatePicker" name="birthdate" [(ngModel)]="customer.birthdate" />
-
-        <mat-datepicker-toggle matIconSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #birthdatePicker></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Address</mat-label>
-        <input matInput name="address" [(ngModel)]="customer.address" />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>City</mat-label>
-        <input matInput name="city" [(ngModel)]="customer.city" />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>State</mat-label>
-        <input matInput name="stateSearchText" [(ngModel)]="stateSearchText" [matAutocomplete]="stateAuto"
-          (keydown.tab)="selectFirstFilteredState()" required />
-        <mat-autocomplete #stateAuto="matAutocomplete">
-          @for (state of filteredStates; track state.code) {
-          <mat-option [value]="state.name" (onSelectionChange)="selectState(state)">
-            {{ state.name }}
-          </mat-option>
-          }
-        </mat-autocomplete>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Zip</mat-label>
-        <input matInput name="zip" [(ngModel)]="customer.zip" />
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" type="submit">
-        Register
-      </button>
-    </form>
+    <app-password-field label="Password" [control]="passwordControl">
+    </app-password-field>
 
     <p class="message">{{ message }}</p>
   </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" type="button" (click)="registerCustomer()">
+      Register
+    </button>
+  </mat-card-actions>
 </mat-card>
